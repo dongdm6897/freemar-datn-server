@@ -1,0 +1,278 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Laravel and Swagger",
+        "description": "Getting started with Laravel and Swagger",
+        "termsOfService": "",
+        "contact": {
+            "email": "name@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/V1/auth/login": {
+            "post": {
+                "description": "Login with email",
+                "parameters": [
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "required": true,
+                    },
+                    {
+                        "name": "X-Requested-With",
+                        "in": "header",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "User email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "User password",
+                        "required": true,
+                        "type": "password"
+                    },
+                    {
+                        "name": "remember_me",
+                        "in": "query",
+                        "description": "Check if want to remember passs to cookies",
+                        "required": true,
+                        "type": "bool"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/api/V1/auth/signup": {
+            "post": {
+                "description": "Register new  account",
+                "parameters": [
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "required": true,
+                    },
+                    {
+                        "name": "X-Requested-With",
+                        "in": "header",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Full name of user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "User email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "User password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "query",
+                        "description": "Confirm password",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "headers": {
+
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid username/password"
+                    }
+                }
+            }
+        },
+        "/api/V1/auth/login_social": {
+            "post": {
+                "description": "Login with social account",
+                "parameters": [
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "X-Requested-With",
+                        "in": "header",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "data",
+                        "in": "query",
+                        "description": "sns data",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "sns id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "sns type",
+                        "required": true,
+                        "type": "string"
+                    },
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    }
+                }
+            }
+        },
+        "/api/V1/brand/get_all": {
+            "get": {
+                "summary": "Return all brand",
+                "description": "get all brands form database",
+                "operationId": "getAllBrand",
+                "produces": "application/xml",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "error",
+                        "schema": {
+                            "description": "pet status in the store",
+                            "type": "array",
+                            "name": "status"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/V1/product/get_new": {
+            "get": {
+                "description": "Return a user's first and last name",
+                "parameters": [
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "X-Requested-With",
+                        "in": "header",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/api/V1/product/get_recently": {
+            "get": {
+                "description": "Return recently product",
+                "parameters": [
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "X-Requested-With",
+                        "in": "header",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+
+                ],
+
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        
+    },
+    "definitions": {}
+}
